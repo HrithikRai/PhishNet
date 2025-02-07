@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gmail Console with Phishing Detection</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f3f4;
+        }
+        .gmail-header {
+            background-color: #202c38;
+            color: white;
+            padding: 15px 30px;
+            font-size: 24px;
+            text-align: right;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        .gmail-header img {
+            width: 40px; /* Adjust logo size */
+            margin-left: 15px;
+        }
+        .gmail-header .name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+        .email-list {
+            margin-top: 80px; /* Offset for header */
+            padding: 20px;
+        }
+        .email-item {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .email-item:hover {
+            background-color: #f4f4f4;
+        }
+        .email-snippet {
+            color: #555;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .email-item .subject {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .email-item .from {
+            color: #1a73e8;
+            margin-top: 5px;
+        }
+        .email-analysis {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .email-analysis b {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with Logo and PhishNet Name -->
+    <div class="gmail-header">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+        <span class="name">PhishNet</span>
+    </div>
+
+    <!-- Email List -->
+    <div class="email-list">
+        <h1>Your Gmail Inbox</h1>
+        
+        <ul>
+            {% for email, analysis in email_analysis %}
+                <li class="email-item">
+                    <div class="subject">{{ email['subject'] }}</div>
+                    <div class="from">{{ email['from'] }}</div>
+                    <div class="email-snippet">{{ email['snippet'] }}</div>
+                    
+                    <!-- Email Analysis Section -->
+                    <div class="email-analysis">
+                        <b>Email Analysis:</b> {{ analysis }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div class="gmail-header">
+        <img src="{{ url_for('static', filename='images/app_logo.jpg') }}" alt="Logo">
+        <span class="name">PhishNet - Catch the baiters before they catch you...</span>
+    </div>
+
+</body>
+</html>
