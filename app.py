@@ -4,7 +4,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 import html 
 import cohere
 
-co = cohere.ClientV2("cZWxyHPX5B72hYVgeLK45bTrwiM05v8lQ5dHGIXS")
+co = cohere.ClientV2("cohere_api")
 
 app = Flask(__name__)
 
