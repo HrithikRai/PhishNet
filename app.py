@@ -4,7 +4,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 import html 
 import cohere
 
-co = cohere.ClientV2("your_cohere_api_key")
+co = cohere.ClientV2("cZWxyHPX5B72hYVgeLK45bTrwiM05v8lQ5dHGIXS")
 
 app = Flask(__name__)
 
@@ -61,7 +61,7 @@ def get_emails():
 def index():
     emails = get_emails()
     email_analysis = [(email, detect_phishing(email)) for email in emails]
-    return render_template("index2.html", email_analysis=email_analysis)
+    return render_template("index.html", email_analysis=email_analysis)
 
 if __name__ == "__main__":
     app.run(debug=True)
